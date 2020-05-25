@@ -1,0 +1,172 @@
+=colorRun
+  &
+    opacity: 0
+    position: relative
+    overflow: hidden
+  &:after
+    display: block
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    background-color: $gray
+    content: ''
+
+=colorRunActive($arg: 0s)
+  &
+    opacity: 1
+  &:after
+    will-change: transform
+    animation: colorRun 1.6s cubic-bezier(0.6, 0, 0.3, 1) $arg 1 both
+  > *
+    will-change: opacity, transform
+    animation: itemShow 1.6s cubic-bezier(0.6, 0, 0.3, 1) $arg 1 both
+
+=colorRunUpActive($arg: 0s)
+  &
+    opacity: 1
+  &:after
+    will-change: transform
+    animation: colorRunUp 1.6s cubic-bezier(0.6, 0, 0.3, 1) $arg 1 both
+  > *
+    will-change: opacity, transform
+    animation: itemShow 1.6s cubic-bezier(0.6, 0, 0.3, 1) $arg 1 both
+
+=colorRunCardActive($arg: 0s)
+  &
+    opacity: 1
+  &:after
+    will-change: transform
+    animation: colorRun 0.9s ease-out $arg 1 both
+  > *
+    will-change: opacity, transform
+    animation: itemShow 0.9s ease-out $arg 1 both
+
+.lazyload
+  opacity: 0
+.is-loading
+  opacity: 0
+  transform: translateY(8px)
+.is-loaded
+  opacity: 1
+  transform: translateY(0)
+  transition: 1s cubic-bezier(.215, .61, .355, 1)
+[data-scroll='out']
+  opacity: 0
+  &[data-title]
+    > *
+      transform: translateY(6rem)
+  &[data-right]
+    transform: translateX(300%)
+  &[data-fadeup]
+    transform: translateY(100px)
+    opacity: 0
+[data-scroll]
+  &[data-left]
+    position: relative
+    +colorRun
+  &[data-up]
+    position: relative
+    +colorRun
+  &[data-right]
+    position: relative
+    transition: transform 1.6s cubic-bezier(.215, .61, .355, 1)
+  &[data-fadeup]
+    transition: transform 1.3s cubic-bezier(.215, .61, .355, 1), opacity 1.3s cubic-bezier(.215, .61, .355, 1)
+  &[data-swiper]
+    .swiper-slide
+      position: relative
+      +colorRun
+      > *
+        display: block
+  &[data-title]
+    position: relative
+    overflow: hidden
+    > *
+      position: relative
+      display: inline-block
+      transition: transform 1.6s cubic-bezier(0.6, 0, 0.3, 1)
+      will-change: transform
+.is-page-loaded
+  [data-scroll='in']
+    &[data-left]
+      +colorRunActive
+    &[data-up]
+      +colorRunUpActive
+    &[data-swiper]
+    .swiper-slide
+      +colorRunUpActive
+    &[data-title]
+      > *
+        transform: translateY(0)
+    &[data-right]
+      transform: translateX(0)
+    &[data-fadeup]
+      transform: translateY(0)
+      opacity: 1
+
+
+
++keyframes(colorRun)
+  0%
+    +transform(translateX(-100%))
+  50%
+    +transform(translateX(0px))
+  100%
+    +transform(translateX(101%))
+
++keyframes(colorRunUp)
+  0%
+    +transform(translateY(100%))
+  50%
+    +transform(translateY(0px))
+  100%
+    +transform(translateY(-101%))
+
++keyframes(colorRunShadow)
+  0%
+    box-shadow: 0px 0px 0px rgba(black, .35)
+  50%
+    box-shadow: 0px 0px 35px rgba(black, .35)
+  100%
+    box-shadow: 15px 30px 35px rgba(black, .35)
+    animation-timing-fuction: cubic-bezier(0.22,0.61,0.36,1)
+
++keyframes(colorRunShadowHover)
+  0%
+    box-shadow: 15px 30px 35px rgba(black, .35)
+  100%
+    box-shadow: 0px 0px 35px rgba(black, .35)
+
++keyframes(itemShow)
+  0%, 50%
+    opacity: 0
+  51%, 100%
+    opacity: 1
+
+.swiper-slide
+  &:nth-child(1)
+    .animate-in
+      > *
+        animation-delay: 0.2s
+      &:after
+        animation-delay: 0.2s
+  &:nth-child(2)
+    .animate-in
+      > *
+        animation-delay: 0.3s
+      &:after
+        animation-delay: 0.3s
+  &:nth-child(3)
+    .animate-in
+      > *
+        animation-delay: 0.4s
+      &:after
+        animation-delay: 0.4s
+  &:nth-child(4)
+    .animate-in
+      > *
+        animation-delay: 0.1s
+      &:after
+        animation-delay: 0.1s

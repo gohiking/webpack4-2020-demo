@@ -1,0 +1,37 @@
+.hamburger
+  display: flex
+  align-items: center
+  display: none
+  &-inner
+    &,
+    &:after,
+    &:before
+      background-color: $grayText
+      
+  &-box
+    // &:after
+    //   content: ''
+    //   position: absolute
+    //   right: 0
+    //   top: 50%
+    //   transform: translateY(-2px)
+    //   width: 11px
+    //   height: 4px
+    //   background-color: #e71f33
+  // &.is-active
+  //   .hamburger-inner
+  //     width: 30px
+  +mq-down(md)
+    margin-left: auto
+    display: block
+    &-box
+      width: 20px
+    &-inner
+      &,
+      &:after,
+      &:before
+        width: 20px
+        height: 2px
+      
+      // &:after
+      //   width: 13px

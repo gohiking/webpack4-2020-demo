@@ -1,0 +1,29 @@
+// Sprite
+
+=sr($src)
+  $w: image-width($src)
+  $h: image-height($src)
+  +srr($src, $w, $h)
+
+=srr($src, $w, $h)
+  // $str: str-slice($src, 0, -5)
+  // $classname: "."+$str
+  // #{$classname}
+  +sprite-responsive($src, $w, $h)
+  width: $w/2
+
+=sprite-responsive($src, $w, $h)
+  +sprite-responsive-mixin($src, $w, $h)
+
+=sprite-responsive-mixin($src, $w, $h)
+  // +text-hide
+  display: inline-block
+  +aspectRatio($w, $h)
+  position: relative
+  font-size: 0
+  line-height: 0
+  background:
+    size: contain
+    repeat: no-repeat
+    image: image-url($src)
+    position: center

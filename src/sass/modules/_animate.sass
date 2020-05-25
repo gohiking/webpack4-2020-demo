@@ -1,0 +1,99 @@
++keyframes(up-and-down)
+  0%
+    transform: translate(0, -5px)
+  50%
+    transform: translate(0, 5px)
+
+.page-enter-active,
+.page-leave-active
+  transition: opacity .5s .2s
+
+.page-enter,
+.page-leave-to
+  opacity: 0
+
+.fade-enter-active,
+.fade-leave-active
+  transition: opacity .5s .2s
+
+.fade-enter,
+.fade-leave-to
+  opacity: 0
+
+.slide-right-enter-active,
+.slide-right-leave-active
+  transition: transform .5s cubic-bezier(.19, 1, .22, 1), opacity .5s cubic-bezier(.19, 1, .22, 1)
+
+.slide-right-enter
+  position: absolute
+  transform: translateX(30%)
+  opacity: 0
+
+.slide-right-leave-to
+  position: absolute
+  transform: translateX(-30%)
+  opacity: 0
+
+.slide-left-enter-active,
+.slide-left-leave-active
+  transition: transform .5s cubic-bezier(.19, 1, .22, 1), opacity .5s cubic-bezier(.19, 1, .22, 1)
+
+.slide-left-enter
+  position: absolute
+  transform: translateX(-30%)
+  opacity: 0
+
+.slide-left-leave-to
+  position: absolute
+  transform: translateX(30%)
+  opacity: 0
+// .slide-left-enter-active,
+// .slide-right-enter-active
+//   transition-delay: 0.5s
+
+.submenu-enter-active,
+.submenu-leave-active
+  transition: opacity .5s 
+
+.submenu-enter,
+.submenu-leave-to
+  opacity: 0
+.title-enter-active
+  transition: all 0.5s ease
+.title-leave-active
+  transition: all 0s ease-in
+  z-index: 0
+.title-enter,
+.title-leave-to
+  opacity: 0
+  position: absolute
+// .card-enter-active
+//   transition: all 1s cubic-bezier(.19, 1, .22, 1)
+// .card-leave-active
+//   transition: all 0.15s
+//   transition-delay: 0s !important
+//   // position: absolute !important
+//   z-index: 0
+// .card-enter
+//   opacity: 0
+//   transform: translateY(20px)
+// .card-leave-to
+//   opacity: 0
+.card-enter-active
+  > *
+    transition: all 1.3s cubic-bezier(.19, 1, .22, 1)
+.card-leave-active
+  transition: all 0.3s
+.card-enter
+  position: absolute
+  > *
+    opacity: 0
+    transform: translateY(50px)
+.card-leave-to
+  opacity: 0
+  display: none
+  position: absolute !important
+.row--product_list > *
+  @for $i from 1 through 15
+    &:nth-child(#{$i})
+      transition-delay: #{.6 + $i * 0.05}s

@@ -1,0 +1,310 @@
+
+$baseLine: 16px
+
+%clearGutter
+	margin: 0
+	padding: 0
+
+@function rhythm($level)
+	@return $baseLine * ceil($level)
+
+@function line($size)
+	@return rhythm($size * 1.2 / $baseLine)
+
+@mixin font($size, $line-height: auto)
+	$line: line($size)
+
+	font-size: $size
+	@if $line-height == auto or $line-height < $line
+		line-height: $line
+		line-height: $line-height
+
+=f($fontSize)
+	font-size: percentage($fontSize/16)
+
+@mixin inline-block
+	display: inline-block
+
+@mixin aspectRatio($w, $h)
+	&:after
+		display: block
+		content: ""
+		padding:
+			bottom: $h/$w*100%
+
+@mixin mq($mq)
+	+media-breakpoint-only($mq)
+		@content
+
+@mixin mq-up($mq)
+	+media-breakpoint-up($mq)
+		@content
+
+
+@mixin mq-down($mq)
+	+media-breakpoint-down($mq)
+		@content
+
+// position
+
+=relative
+	position: relative
+
+=absolute
+	position: absolute
+
+=fixed
+	position: fixed
+
+=static
+	position: static
+
+=abs-center
+	+absolute
+	+transform(translate(-50%, -50%))
+	top: 50%
+	left: 50%
+
+=abs-v-center
+	+absolute
+	+transform(translateY(-50%))
+	top: 50%
+
+=abs-h-center
+	+absolute
+	+transform(translateX(-50%))
+	left: 50%
+
+// bourbon 4
+
+=transform($arg)
+	transform: $arg
+	-webkit-transform: $arg
+	-moz-transform: $arg
+	-o-transform: $arg
+	-ms-transform: $arg
+
+=transition-property($arg)
+	-webkit-transition-property: $arg
+	-ms-transition-property: $arg
+	transition-property: $arg
+
+=transition-duration($arg)
+	-webkit-transition-duration: $arg
+	-ms-transition-duration: $arg
+	transition-duration: $arg
+
+=transition-timing-function($arg)
+	-webkit-transition-timing-function: $arg
+	-ms-transition-timing-function: $arg
+	transition-timing-function: $arg
+
+=transform-origin($arg)
+	-webkit-transform-origin: $arg
+	-ms-transform-origin: $arg
+	transform-origin: $arg
+
+=transition-delay($arg)
+	-webkit-transform-delay: $arg
+	-ms-transform-delay: $arg
+	transition-delay: $arg
+
+=appearance($arg)
+	-webkit-appearance: $arg
+	-ms-appearance: $arg
+	appearance: $arg
+
+=background-image($arg)
+	background-image: $arg
+
+=animation($arg)
+	-webkit-animation: $arg
+	-moz-animation: $arg
+	-o-animation: $arg
+	animation: $arg
+
+=columns($arg)
+	columns: $arg
+
+=keyframes($str)
+	@-webkit-keyframes #{$str}
+		@content
+	@-moz-keyframes #{$str}
+		@content
+	@-ms-keyframes #{$str}
+		@content
+	@-o-keyframes #{$str}
+		@content
+	@keyframes #{$str}
+		@content
+
+=linear-gradient($color1, $color2)
+	linear-gradient: $color1, $color2
+
+=transform-style($arg)
+	transform-style: $arg
+	-webkit-transform-style: $arg
+	-moz-transform-style: $arg
+	-o-transform-style: $arg
+	-ms-transform-style: $arg
+
+=perspective($arg)
+	perspective: $arg
+	-webkit-perspective: $arg
+	-moz-perspective: $arg
+	-o-perspective: $arg
+	-ms-perspective: $arg
+
+=perspective-origin($arg)
+	-webkit-perspective-origin: $arg
+	-moz-perspective-origin: $arg
+	-ms-perspective-origin: $arg
+	perspective-origin: $arg
+
+=backface-visibility($arg)
+	backface-visibility: $arg
+	-webkit-backface-visibility: $arg
+	-moz-backface-visibility: $arg
+	-o-backface-visibility: $arg
+	-ms-backface-visibility: $arg
+
+=transition($arg)
+	transition: $arg
+	-webkit-transition: $arg
+	-moz-transition: $arg
+	-o-transition: $arg
+	-ms-transition: $arg
+=animation($arg)
+	animation: $arg
+	-webkit-animation: $arg
+	-moz-animation: $arg
+	-o-animation: $arg
+	-ms-animation: $arg
+
+// Animation : Transition
+
+=clearAnimate
+	+transition-duration(0)
+
+=transition
+	+transition-property(all)
+	+transition-duration(.7s)
+	+transition-timing-function(ease-in-out)
+
+=transition-transform
+	+transition-property(transform)
+	+transition-duration(.7s)
+	+transition-timing-function(ease-in-out)
+		
+=transition-slow
+	+transition-property(all)
+	+transition-duration(1s)
+	+transition-timing-function(ease-in-out)
+
+=transition-fast
+	+transition-property(all)
+	+transition-duration(.3s)
+	+transition-timing-function(ease-in-out)
+
+// font awesome
+
+=fab
+	font-family: 'Font Awesome 5 Brands'
+=fal
+	font-family: 'Font Awesome 5 Pro'
+	font-weight: 300
+=far
+	font-family: 'Font Awesome 5 Pro'
+	font-weight: 400
+=fa
+	font-family: 'Font Awesome 5 Pro'
+	font-weight: 900
+=fas
+	font-family: 'Font Awesome 5 Pro'
+	font-weight: 900
+
+=triangle($direction, $sizeH, $sizeV, $color)
+  content: ''
+  display: block
+  width: 0
+  height: 0
+  border-style: solid
+  -moz-transform: scale(0.9999)
+
+  @if $direction == top
+    border-width: 0 $sizeV $sizeH $sizeV
+    border-color: transparent transparent $color transparent
+
+  @if $direction == bottom
+    border-width: $sizeH $sizeV 0 $sizeV
+    border-color: $color transparent transparent transparent
+
+  @if $direction == left
+    border-width: $sizeV $sizeH $sizeV 0
+    border-color: transparent $color transparent transparent
+
+  @if $direction == right
+    border-width: $sizeV 0 $sizeV $sizeH
+    border-color: transparent transparent transparent $color
+
+  @if $direction == topright
+    border-width: 0 $sizeH $sizeV 0
+    border-color: transparent $color transparent transparent
+
+  @if $direction == bottomright
+    border-width: 0 0 $sizeH $sizeV
+    border-color: transparent transparent $color transparent
+
+  @if $direction == bottomleft
+    border-width: $sizeH 0 0 $sizeV
+    border-color: transparent transparent transparent $color
+
+  @if $direction == topleft
+    border-width: $sizeH $sizeV 0 0
+    border-color: $color transparent transparent transparent
+@function pow($number, $exp)
+	$value: 1
+	@if $exp > 0
+		@for $i from 1 through $exp
+			$value: $value * $number
+	@else if $exp < 0
+		@for $i from 1 through -$exp
+			$value: $value / $number
+	@return $value
+
+@function fact($number)
+	$value: 1
+	@if $number > 0
+		@for $i from 1 through $number
+			$value: $value * $i
+	@return $value
+
+@function pi()
+	@return 3.14159265
+
+@function rad($angle)
+	$unit: unit($angle)
+	$unitless: $angle / ($angle * 0 + 1)
+	// If the angle has 'deg' as unit, convert to radians.
+	@if $unit == deg
+		$unitless: $unitless / 180 * pi()
+	@return $unitless
+
+@function sin($angle)
+	$sin: 0
+	$angle: rad($angle)
+	// Iterate a bunch of times.
+	@for $i from 0 through 10
+		$sin: $sin + pow(-1, $i) * pow($angle, 2 * $i + 1) / fact(2 * $i + 1)
+	@return $sin
+
+@function cos($angle)
+	$cos: 0
+	$angle: rad($angle)
+	// Iterate a bunch of times.
+	@for $i from 0 through 10
+		$cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i)
+	@return $cos
+
+@function tan($angle)
+	@return sin($angle) / cos($angle)

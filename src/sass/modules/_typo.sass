@@ -1,0 +1,120 @@
+
+
+body
+  font-family: -apple-system, 'Noto Sans TC', BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif
+  color: $black
+  font-size: 16px
+  font-weight: 400
+  line-height: 1.8
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+  -webkit-backface-visibility: hidden
+  color: $grayText
+button
+  cursor: pointer
+  border: 0px
+  background-color: transparent
+
+a
+  &
+    color: $grayText
+    text-decoration: none
+    cursor: pointer
+  &:hover
+    color: $grayText
+    text-decoration: none
+    cursor: pointer
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+  line-height: 1.414
+  font-weight: 400
+  letter-spacing: 1.9px
+  margin: 0
+h1
+  &
+    +f(30)
+  +mq-up(md)
+    +f(34)
+
+h2
+  &
+    +f(26)
+  +mq-up(md)
+    +f(32)
+h3
+  &
+    +f(20)
+  +mq-up(md)
+    +f(30)
+
+h4
+  &
+    +f(14)
+  +mq-up(md)
+    +f(20)
+
+h5
+  +f(18)
+
+h6
+  +f(16)
+  font-weight: 400
+p
+  text-align: justify
+  +f(14)
+
+.v-article
+  &
+    margin: 0 auto 1rem
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .2)
+    padding: .5rem 1rem 1.5rem 1rem
+    border-radius: 7px
+  a
+    color: $primary
+  img,
+  p
+    margin-bottom: 1rem
+  h2
+    margin-bottom: 1.5rem
+  h4
+    color: $primary
+  ol,
+  ul
+    margin: 0
+    padding-left: 1.5rem
+    font-size: 87.5%
+    margin:
+      bottom: 1.5rem
+.title
+  font-weight: 400
+  line-height: 1.2
+  letter-spacing: 1px
+  text-align: center
+  p
+    +f(14)
+    color: $primary
+    text-align: center
+    margin-bottom: .5rem
+  h1
+    +f(40)
+    font-weight: 400
+  +mq-down(md)
+    h1
+      +f(28)
+    p
+      +f(12)
+.subtitle
+  text-align: center
+  +mq-down(sm)
+    +f(14)
+.container
+  > .title
+    line-height: 1.4
+    text-align: center
+    margin-bottom: 1rem

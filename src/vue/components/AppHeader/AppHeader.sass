@@ -1,0 +1,491 @@
+.app-header,
+.scroll-header
+  position: absolute
+  left: 0
+  top: 0
+  width: 100%
+  height: 85px
+  text-align: center
+  z-index: 10
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  padding: 0 1.5rem
+  transition: 0.35s ease
+  color: $grayText
+  .nav
+    color: $grayText
+    
+  nav
+    position: relative
+    margin-left: 1rem
+  ul
+    margin: 0
+    padding: 0
+  +mq-up(lg)
+    nav > ul
+      display: flex
+  li
+    display: block
+    padding: 0 1rem
+  nav a
+    i
+      display: none
+  .nav--search
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    right: 2rem
+    width: 40px
+    height: 30px
+    display: flex
+    justify-content: center
+    align-items: center
+    color: white
+    font-size: 14px
+    transition: 0.3s ease
+    +f(20)
+    // border-left: 1px solid white
+    &:hover
+      color: $grayText
+  li a
+    position: relative
+    height: 85px
+    display: inline-block
+    display: flex
+    align-items: center
+    i
+      margin-left: .5rem
+      +f(22)
+    &:after
+      content: ''
+      position: absolute
+      left: 50%
+      transform: translateX(-50%)
+      bottom: 0
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 0 7px 13px 7px
+      border-color: transparent transparent #FAE6D0 transparent
+      opacity: 0
+      transition: 0.5s ease
+    &.is-subrouter
+      &:after
+        opacity: 1
+  .is-search-open &
+    background-color: #fff
+    .nav
+      pointer-events: none
+  .is-sub-hover &
+    background-color: #fff
+  +mq-down(md)
+    position: absolute
+    background-color: #fff
+    height: 55px
+    z-index: 11
+    .nav
+      position: absolute
+      opacity: 0
+      left: 0
+      background-color: #FAE6D0
+      top: 55px
+      width: 100%
+      height: 100vh
+      transform: translate(0%)
+      transition: opacity .8s cubic-bezier(.19, 1, .22, 1), transform .8s cubic-bezier(.19, 1, .22, 1)
+      overflow-y: auto
+      pointer-events: none
+      li a
+        height: 55px
+
+    nav
+      margin: 0
+      padding: 0 1rem
+      background-color: #fff
+    li
+      display: block
+      border-bottom: 1px solid $gray
+      padding: 0
+    a
+      display: flex
+      justify-content: space-between
+      padding: 0 .5rem
+      transition: 0.35s ease
+      &:hover
+        background-color: #FAE6D0
+    .nav a i
+      display: inline-block
+    .nav--search
+      display: none
+    .logo
+      transform: scale(0.75)
+      transform-origin: left
+      padding: 0
+  +mq-up(lg)
+    nav > ul > li > a:not(.is-subrouter)
+      span
+        &
+          position: relative
+        &:after
+          content: ''
+          position: absolute
+          left: 50%
+          width: 100%
+          height: 3px
+          bottom: -3px
+          background-color: $primary
+          transition: transform 0.3s ease-out
+          transform: translateX(-50%) scaleX(0)
+      &:hover
+        span:after
+          transform: translateX(-50%) scaleX(1)
+.app-header
+  .nav--search
+    color: $grayText
+    border-left: 1px solid $gray
+.scroll-header
+  .nav--search
+    color: $grayText
+    border-left: 1px solid $gray
+#index
+  .app-header
+    .nav--search
+      color: white
+      border-left: 0px solid $gray
+  .is-sub-hover
+    .app-header
+      .nav--search
+        color: $grayText
+        border-left: 0px solid $gray
++mq-down(md)
+  .is-open-drawer
+    .scroll-header,
+      .nav
+        opacity: 1
+        transform: translateX(0%)
+        pointer-events: auto
+.scroll-header
+  position: fixed
+  background-color: #fff
+  transform: translateY(-100%)
+  transition: 0.35s ease
+  .nav--search
+    border-left: 1px solid #E8E8E8
+    color: $grayText
+    &:hover
+      color: $primary
+  .is-scrolled &
+    transform: translateY(0)
+  +mq-down(md)
+    .is-scrolled &
+      transform: translateY(-100%)
+    &.is-scroll-up
+      transform: translateY(0)
+    .is-open-drawer &
+      transform: translateY(0)
+    .is-sub-hover &
+      transform: translateX(-100%)
+    
+
+.search-bar
+  position: fixed
+  top: 85px
+  left: 0
+  width: 100%
+  height: 85px
+  z-index: 2
+  display: flex
+  justify-content: center
+  align-items: center
+  transform: translateY(-200%)
+  opacity: 0
+  transition: opacity .4s linear, transform .8s cubic-bezier(.19, 1, .22, 1), background-color .4s
+  z-index: 4
+  pointer-events: none
+  .is-scrolled &,
+  .is-search-open &
+    background-color: #FAE6D0
+  
+.search
+  display: flex
+  justify-content: center
+  align-items: center
+  border-left: 1px solid black
+  padding-left: 1.5rem
+  a
+    color: $grayText
+    transition: 0.3s ease
+    &:hover
+      color: $primary
+
+.close
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 14px
+  transition: 0.3s ease
+  &:hover
+    background-color: #fff
+    color: #EE7624
+  span
+    margin-right: 1rem
+  i
+    font-size: 20px
+    line-height: 1
+    display: flex
+    align-items: center
+    position: relative
+    top: 1px
+input
+  border: none
+  background-color: transparent
+  outline: none
+  opacity: 0
+  color: #383838
+  
+.input
+  width: 10px
+  opacity: 0
+
+::placeholder
+  color: #383838
+.close
+  position: absolute
+  right: 2rem
+  top: 30px
+  transform: translateY(-200%)
+  transition: opacity .4s linear, transform .8s cubic-bezier(.19, 1, .22, 1), background-color 0.35s, color 0.35s ease
+  opacity: 0
+.search
+  opacity: 0
+.nav
+  opacity: 1
+  transition: opacity .4s linear
+.is-search-open
+  .search-bar,
+  .close
+    transform: translateY(0%)
+    opacity: 1
+    pointer-events: auto
+  .nav
+    opacity: 0
+  .input
+    width: 470px
+    opacity: 1
+    transition: width .8s cubic-bezier(.19, 1, .22, 1) .8s, opacity 0s
+  input
+    opacity: 1
+    transition: opacity .4s 1.4s
+  .search
+    transition: opacity .4s linear
+    opacity: 1
+.submenu-bar
+  &
+    position: fixed
+    top: 82px
+    left: 0
+    z-index: 5
+    display: flex
+    width: 100%
+    pointer-events: none
+    transition: 0.5s ease
+    opacity: 0
+  .is-sub-hover &
+    opacity: 1
+    pointer-events: auto
+  > *
+    width: 50%
+  .submenu--caption
+    background-color: #FAE6D0
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+  .submenu--title
+    text-align: left
+    .en
+      +f(14)
+      margin-left: 1rem
+  .submenu--img
+    position: relative
+    +mq-up(lg)
+      height: 275.8px
+    img
+      width: 100%
+      position: absolute
+      top: 0%
+      right: 0
+      opacity: 0
+      height: 100%
+      object-fit: cover
+      object-position: center center
+      &.is-active
+        position: relative
+        opacity: 1
+  .submenu--categorys
+    +make-row
+    margin: 0 -1rem
+    max-width: 415px
+    margin-left: auto
+    margin-right: auto
+    .col,
+      +make-col(4)
+      padding: 0 1rem
+    .col--full
+      +make-col-ready
+      margin-bottom: 1rem
+  a
+    border-bottom: 1px solid rgba(#4F402E, 0.2)
+    width: 100%
+    display: flex
+    position: relative
+    justify-content: space-between
+    align-items: center
+    padding-bottom: .3rem
+    margin: auto
+    margin-bottom: .5rem
+    &:after
+      content: ''
+      position: absolute
+      left: 0
+      bottom: -1px
+      width: 100%
+      height: 1px
+      background-color: #4F402E
+      transform: scaleX(0)
+      transform-origin: left top
+      transition: 0.35s ease-out
+    &:hover
+      &:after
+        transform: scaleX(1)
+
+  +mq-down(md)
+    top: 0
+    z-index: 11
+    height: 100%
+    width: 100%
+    transform: translateX(100%)
+    transition: 0.35s ease
+    opacity: 1
+    .submenu--caption
+      width: 100%
+      background-color: #fff
+      padding: 1rem
+      align-items: flex-start
+      justify-content: flex-start
+    .submenu--title
+      display: flex
+      width: 100%
+      justify-content: space-between
+      button
+        margin-left: 0
+        color: $primary
+        +f(22)
+      span.en
+        display: none
+    .submenu--categorys
+      width: 100%
+      margin: 0
+      .col
+        +make-col(12)
+        padding-bottom: 1rem
+      a
+        border-bottom: 1px solid $gray
+    .submenu--img
+      display: none
+    .is-sub-hover &
+      transform: translateX(0)
+.nav--search__m
+  display: none
+  text-align: left
+  font-weight: 500
+  .search
+    opacity: 1
+    display: inline-flex
+  .nav--search__m--title
+    background-color: #fff
+    padding-bottom: 1.5rem
+    padding-left: 2rem
+    padding-top: 1.5rem
+    position: relative
+    &:after
+      content: ''
+      position: absolute
+      bottom: -15px
+      left: 4rem
+      +triangle(bottom, 15px, 10px, white)
+  .input
+    opacity: 1
+    width: 215px
+  input
+    opacity: 1
+  .nav--seach__m--search
+    text-align: center
+    background-color: #FAE6D0
+    padding: 2rem 0
+  .search
+
++mq-down(md)
+  .is-open-drawer
+    .nav--search__m
+      display: block
+    
+
+.compare-back
+  display: none !important
+.logo
+  h1
+    position: absolute
+    opacity: 0
+
+#compare,
+#news-detail,
+  +mq-down(md)
+    .app-header,
+    .scroll-header
+      .logo
+        display: none
+    .compare-back
+      display: block !important
+      +f(26)
+      color: $primary
+      padding-left: 0
+.submenu--bg
+  position: fixed
+  background-color: rgba(#fff, 0.75)
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  z-index: 5
+
+
+.product-detail-back
+  opacity: 0
+  pointer-events: none
+
++mq-down(md)
+  #product-detail,
+  .is-product-detail
+    .app-header .logo,
+    .scroll-header .logo
+      display: none
+    .product-detail-back
+      opacity: 1
+      pointer-events: auto
+  .is-open-drawer
+    .is-product-detail
+      .app-header .logo,
+      .scroll-header .logo
+        display: block
+      .product-detail-back
+        display: none
+  #product-detail
+    .is-open-drawer
+      .app-header .logo,
+      .scroll-header .logo
+        display: block
+      .product-detail-back
+        display: none
+    
